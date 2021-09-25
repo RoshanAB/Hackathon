@@ -1,0 +1,314 @@
+<%- include('./partials/header') %>
+<link rel="stylesheet" href="/css/quizPage.css">
+<nav class="navbar navbar-custom navbar-expand-lg">
+    <a class="navbar-custom" href="/" style="text-decoration: none;">Knowledge House</a>
+    <button
+      class="navbar-toggler button-custom"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"
+        ><i class="fa fa-bars pt-1" aria-hidden="true"></i>
+      </span>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-end navbar-custom"
+      id="navbarNav"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"
+            >Home <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/courses">Courses</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz">Quiz</a>
+        </li>
+        
+
+      
+      </ul>
+    </div>
+  
+  
+  <!-- LoginModal -->
+  <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="LoginModalLabel">Login to Knowledge House</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="/login">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" name="username"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name@example.com">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="form-group col-md-12 mb-3" style="display: flex; justify-content: center;">
+              <button type="submit" class="btn btn-primary col-md-3 mx-auto my-auto">Log In</button>
+            </div>
+    
+             
+            <div class="form-group col-md-12 mb-3" style="display: flex; justify-content: center;">
+              OR
+            </div>
+           
+            <div class="form-group col-md-12 mb-3" style="display: flex; justify-content: center;">
+              <a href="/auth/google" class="btn col-md-6 mx-auto my-auto" style="background-color: #dd4b39; color: white;" role="button">
+                <i class="fab fa-google mr-2" style="background-color: #dd4b39; color: white;"></i>
+              Log In with Google</a>
+            </div>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+    </div>
+    
+    <!-- SignUpModal -->
+    <div class="modal fade" id="SignUpModal" tabindex="-1" aria-labelledby="SignUpModalLabel" aria-hidden="true" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="SignUpModalLabel">Get a Knowledge House Account</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="/register">
+              <!-- <div class="row">
+                <div class="col-md-12 mb-3">
+                  <label for="firstName">Name</label>
+                  <input type="text" name="name" class="form-control" id="firstName" placeholder="" value="" required>
+                  <div class="invalid-feedback">
+                    Name is required.
+                  </div>
+                </div> -->
+              <div class="form-group col-md-12 mb-3">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name@example.com">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group col-md-12 mb-3">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" class="form-control">
+              </div>
+                  
+              
+              <div class="form-group col-md-12 mb-3" style="display: flex; justify-content: center;">
+                <button type="submit" class="btn btn-primary col-md-3 mx-auto my-auto">Sign up</button>
+              </div>
+      
+               
+              <div class="form-group col-md-12 mb-3" style="display: flex; justify-content: center;">
+                OR
+              </div>
+             
+              <div class="form-group col-md-12 mb-3" style="display: flex; justify-content: center;">
+                <a href="/auth/google" class="btn col-md-6 mx-auto my-auto" style="background-color: #dd4b39; color: white;" role="button">
+                  <i class="fab fa-google mr-2" style="background-color: #dd4b39; color: white;"></i>
+                Sign Up with Google</a>
+              </div>
+      
+              
+            </form>
+          </div>
+          
+        </div>
+      </div>
+      </div>
+      </div>  
+  </nav>
+  
+  
+  <div class="quiz-container">
+   
+  <div class="quiz-card">
+    <div class="quiz-name">HTML</div>
+    
+  
+    <% if(userQuiz){ %>
+      <% if(!userQuiz['Html']){ %>
+    <div class="quiz-btn"><a href="/quiz/Html">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Html">Take Quiz</a></div>
+      <% } %>
+    
+
+      
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Html">LeaderBoard</a></div>
+  </div>
+
+
+
+
+  <div class="quiz-card">
+    <div class="quiz-name">CSS</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Css']){ %>  
+    <div class="quiz-btn"><a href="/quiz/Css">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Css">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Css">LeaderBoard</a></div>
+  </div>
+  
+
+  
+  <div class="quiz-card">
+    <div class="quiz-name">JavaScript</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Javascript']){ %>
+    <div class="quiz-btn"><a href="/quiz/Javascript">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/JavaScript">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Javascript">LeaderBoard</a></div>
+  </div>
+ 
+
+
+  <div class="quiz-card">
+    <div class="quiz-name">Node Js</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Nodejs']){ %>
+    <div class="quiz-btn"><a href="/quiz/Nodejs">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Nodejs">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Nodejs">LeaderBoard</a></div>
+  </div>
+ 
+
+  
+  <div class="quiz-card">
+    <div class="quiz-name">Express Js</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Expressjs']){ %>
+    <div class="quiz-btn"><a href="/quiz/Expressjs">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Expressjs">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Expressjs">LeaderBoard</a></div>
+  </div>
+  
+
+
+  <div class="quiz-card">
+    <div class="quiz-name">Angular Js</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Angularjs']){ %>
+    <div class="quiz-btn"><a href="/quiz/Angularjs">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Angularjs">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Angularjs">LeaderBoard</a></div>
+  </div>
+  
+
+  
+  <div class="quiz-card">
+    <div class="quiz-name">React Js</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Reactjs']){ %>
+    <div class="quiz-btn"><a href="/quiz/Reactjs">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Reactjs">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Reactjs">LeaderBoard</a></div>
+  </div>
+  
+
+
+  <div class="quiz-card">
+    <div class="quiz-name">Django</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Django']){ %>
+    <div class="quiz-btn"><a href="/quiz/Django">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Django">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Django">LeaderBoard</a></div>
+  </div>
+  
+
+  
+  <div class="quiz-card">
+    <div class="quiz-name">MySQL</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Mysql']){ %>
+    <div class="quiz-btn"><a href="/quiz/Mysql">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Mysql">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Mysql">LeaderBoard</a></div>
+  </div>
+ 
+
+
+  <div class="quiz-card">
+    <div class="quiz-name">PHP</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Php']){ %>
+    <div class="quiz-btn"><a href="/quiz/Php">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Php">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Php">LeaderBoard</a></div>
+  </div>
+  
+
+  
+  <div class="quiz-card">
+    <div class="quiz-name">MongoDB</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Mongodb']){ %>
+    <div class="quiz-btn"><a href="/quiz/Mongodb">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Mongodb">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Mongodb">LeaderBoard</a></div>
+  </div>
+  
+
+  
+  <div class="quiz-card">
+    <div class="quiz-name">SpringBoot</div>
+    <% if(userQuiz){ %>
+    <% if(!userQuiz['Springboot']){ %>
+    <div class="quiz-btn"><a href="/quiz/Springboot">Take Quiz</a></div>
+    <% } %>
+    <% } else{ %>
+      <div class="quiz-btn"><a href="/quiz/Springboot">Take Quiz</a></div>
+      <% } %>
+    <div class="leaderboard-btn"><a href="/quiz/leaderboard/Springboot">LeaderBoard</a></div>
+  </div>
+  
+</div>
